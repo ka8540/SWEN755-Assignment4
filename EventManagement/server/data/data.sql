@@ -32,7 +32,8 @@ CREATE TABLE EventData (
     title VARCHAR(255) NOT NULL,
     location VARCHAR(255),
     time TIME NOT NULL,
-    organizer VARCHAR(255) NOT NULL
+    organizer VARCHAR(255) NOT NULL,
+    audience_type VARCHAR(10) NOT NULL CHECK (audience_type IN ('UG', 'G', 'UG&G'))
 );
 
 INSERT INTO UserTable (student_email, username, password, role, major)

@@ -20,11 +20,9 @@ function Dashboard() {
                     }
                 });
                 const data = await response.json();
-                console.log("Data:",data)
+                console.log("Data:", data);
                 if (response.ok) {
-                    const eventTitles = data.events.map(event => event[1]); // Assuming event[1] is the title
-                    console.log("Event Titles:", eventTitles);
-                    setEvents(eventTitles);
+                    setEvents(data.events); // Assuming data.events is an array of [id, title]
                 } else {
                     console.error(data.message);
                 }
@@ -66,11 +64,15 @@ function Dashboard() {
             console.error('Error during signout:', error);
         }
     };
-    
 
     const handleDivClick = (divName, navigateTo) => {
         setSelectedDiv(divName);
         navigate(navigateTo);
+    };
+
+    const handleEventClick = (eventId) => {
+        console.log("ID:",eventId);
+        navigate(`/admin/addeventboard/${eventId}`); // Pass event ID in the route
     };
 
     return (
@@ -85,16 +87,13 @@ function Dashboard() {
                         Home
                     </span>
                 </div>
-
-
                 <div
                     className={`dashboard-tab ${selectedDiv === 'signout' ? 'selected' : ''}`}
                     onClick={handleSignOut}
                 >
                     <span className="material-symbols-outlined">
-                    Signout
+                        Signout
                     </span>
-
                 </div>
             </div>
             <div className='dashboard-main'>
@@ -107,9 +106,13 @@ function Dashboard() {
                         </div>
                     ) : (
                         <div className='events-list'>
-                            {events.map((event, index) => (
-                                <div key={index} className='event-card'>
-                                    <h3>{event}</h3> 
+                            {events.map(([id, title], index) => (
+                                <div
+                                    key={index}
+                                    className='event-card'
+                                    onClick={() => handleEventClick(id)} // Navigate with event ID
+                                >
+                                    <h3>{title}</h3>
                                 </div>
                             ))}
                             <div className='event-card create-new' onClick={() => navigate('/create-event')}>
