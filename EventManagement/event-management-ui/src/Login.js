@@ -28,7 +28,7 @@ export default function Login() {
 
             localStorage.setItem("token", data.access_token);
 
-            navigate("/admin");
+            navigate("/admindashboard");
         } catch (error) {
             setError(error.message);
         }

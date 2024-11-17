@@ -17,7 +17,7 @@ CREATE TABLE UserTable (
 -- Create the Session Storage table
 CREATE TABLE SessionStorage (
     session_id SERIAL PRIMARY KEY,
-    session_key VARCHAR(255) UNIQUE NOT NULL,
+    session_key VARCHAR(255) NOT NULL,
     data TEXT,
     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
