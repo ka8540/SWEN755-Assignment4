@@ -15,7 +15,7 @@ def validate_admin_session(user_id, session_key):
 def add_event_to_db(event_data):
     query = """
         INSERT INTO EventData (date, description, title, location, time, organizer, audience_type)
-        VALUES (%s, %s, %s, %s, %s, %s)
+        VALUES (%s, %s, %s, %s, %s, %s, %s)
     """
     exec_commit(query, (
         event_data['date'],

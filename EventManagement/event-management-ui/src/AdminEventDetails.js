@@ -13,7 +13,7 @@ function AdminEventDetails() {
         const fetchEventDetails = async () => {
             try {
                 const token = localStorage.getItem('token');
-                console.log("ID2:",eventId);
+                console.log("ID2:", eventId);
                 const response = await fetch(`http://127.0.0.1:5000/admin/eventdetails/${eventId}`, {
                     method: 'GET',
                     headers: {
@@ -79,10 +79,9 @@ function AdminEventDetails() {
 
     return (
         <div className="event-details-container">
-           
             {eventDetails && (
                 <div className="event-details-card">
-                     <h2>Event Details</h2>
+                    <h2>Event Details</h2>
                     <div className="event-field">
                         <label>Title:</label>
                         {isEditing ? (
@@ -158,6 +157,22 @@ function AdminEventDetails() {
                             />
                         ) : (
                             <span>{eventDetails.organizer}</span>
+                        )}
+                    </div>
+                    <div className="event-field">
+                        <label>Audience Type:</label>
+                        {isEditing ? (
+                            <select
+                                name="audience_type"
+                                value={updatedEventDetails.audience_type || ''}
+                                onChange={handleInputChange}
+                            >
+                                <option value="UG">Undergraduate (UG)</option>
+                                <option value="G">Graduate (G)</option>
+                                <option value="Both">Both</option>
+                            </select>
+                        ) : (
+                            <span>{eventDetails.audience_type}</span>
                         )}
                     </div>
                     <div className="event-buttons">

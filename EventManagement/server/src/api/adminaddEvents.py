@@ -35,6 +35,7 @@ class AdminAddEventsAPI(Resource):
         parser.add_argument('location', type=str, required=True, help='Location is required', location='json')
         parser.add_argument('time', type=str, required=True, help='Time is required (HH:MM:SS)', location='json')
         parser.add_argument('organizer', type=str, required=True, help='Organizer is required', location='json')
+        parser.add_argument('audience_type', type=str, required=True, help="audience_type is required", location='json')
         args = parser.parse_args()
 
         # Get current user details from JWT
@@ -54,7 +55,8 @@ class AdminAddEventsAPI(Resource):
             "title": args['title'],
             "location": args['location'],
             "time": args['time'],
-            "organizer": args['organizer']
+            "organizer": args['organizer'],
+            "audience_type": args['audience_type']
         }
         add_event_to_db(event_data)
 
@@ -108,6 +110,7 @@ class AdminEventDetailIDsAPI(Resource):
         parser.add_argument('time', type=str, required=True, help="Time is required", location='json')
         parser.add_argument('location', type=str, required=True, help="Location is required", location='json')
         parser.add_argument('organizer', type=str, required=True, help="Organizer is required", location='json')
+        parser.add_argument('audience_type', type=str, required=True, help="audience_type is required", location='json')
         args = parser.parse_args()
 
         # Update event in the database
@@ -117,7 +120,8 @@ class AdminEventDetailIDsAPI(Resource):
             "date": args['date'],
             "time": args['time'],
             "location": args['location'],
-            "organizer": args['organizer']
+            "organizer": args['organizer'],
+            "audience_type": args['audience_type']
         }
         update_successful = update_event_by_id(event_id, updated_event)
 
