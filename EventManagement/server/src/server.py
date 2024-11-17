@@ -10,6 +10,8 @@ from utilities.swen_344_db_utils import exec_sql_file
 from api.adminlogin_api import AdminLoginAPI
 from api.adminsignout_api import AdminSignoutAPI
 from api.adminaddEvents import AdminAddEventsAPI
+from api.userlogin_api import UserLoginAPI
+from api.userregister_api import UserRegisterAPI
 
 app = Flask(__name__)
 CORS(app)
@@ -28,6 +30,8 @@ api = Api(app)
 api.add_resource(AdminLoginAPI, '/admin/login', resource_class_kwargs={'bcrypt': bcrypt})
 api.add_resource(AdminSignoutAPI, '/admin/signout')
 api.add_resource(AdminAddEventsAPI, '/admin/addevent')
+api.add_resource(UserLoginAPI, '/login', resource_class_kwargs={'bcrypt': bcrypt})
+api.add_resource(UserRegisterAPI, '/register', resource_class_kwargs={'bcrypt': bcrypt})
 
 # Function to set up the database
 def setup_database():
