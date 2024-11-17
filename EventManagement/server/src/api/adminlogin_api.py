@@ -37,7 +37,7 @@ class AdminLoginAPI(Resource):
             "data": f"{args['username']} logged in.",
             "timestamp": datetime.utcnow(),
         }
-        log_admin_activity(activity_data)
+        log_admin_activity(activity_data,user_id)
 
         # Generate JWT token
         expires = timedelta(hours=24)

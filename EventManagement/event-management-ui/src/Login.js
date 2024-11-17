@@ -23,7 +23,8 @@ export default function Login() {
             const data = await response.json();
 
             if (!response.ok) {
-                throw new Error(data.message || "Failed to log in");
+                alert(data.message || "Invalid Credentials");
+                throw new Error(data.message);
             }
 
             localStorage.setItem("token", data.access_token);

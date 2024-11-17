@@ -18,8 +18,10 @@ CREATE TABLE UserTable (
 CREATE TABLE SessionStorage (
     session_id SERIAL PRIMARY KEY,
     session_key VARCHAR(255) NOT NULL,
+    user_id INT NOT NULL, 
     data TEXT,
-    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES UserTable(id) ON DELETE CASCADE
 );
 
 -- Create the EventData table

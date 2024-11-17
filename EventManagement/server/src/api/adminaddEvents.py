@@ -14,14 +14,14 @@ class AdminAddEventsAPI(Resource):
 
         # Validate admin session
         if not validate_admin_session(user_id, session_key):
-            log_admin_activity(session_key, "Invalid session or unauthorized attempt to fetch events", "Failed")
+            log_admin_activity(session_key, "Invalid session or unauthorized attempt to fetch events", "Failed",user_id)
             return make_response(jsonify({"error": "Invalid session or unauthorized access"}), 403)
 
         # Fetch all event titles and IDs
         events = get_event_titles()
 
         # Log the fetch activity
-        log_admin_activity(session_key, "Fetched all event titles", "Success")
+        log_admin_activity(session_key, "Fetched all event titles", "Success",user_id)
 
         return make_response(jsonify({"events": events}), 200)
     
@@ -44,7 +44,7 @@ class AdminAddEventsAPI(Resource):
 
         # Validate admin session
         if not validate_admin_session(user_id, session_key):
-            log_admin_activity(session_key, "Invalid session or unauthorized attempt to add event", "Failed")
+            log_admin_activity(session_key, "Invalid session or unauthorized attempt to add event", "Failed",user_id)
             return make_response(jsonify({"error": "Invalid session or unauthorized access"}), 403)
 
         # Add event to the database
@@ -59,6 +59,6 @@ class AdminAddEventsAPI(Resource):
         add_event_to_db(event_data)
 
         # Log the event addition activity
-        log_admin_activity(session_key, f"Added event: {args['title']}", "Success")
+        log_admin_activity(session_key, f"Added event: {args['title']}", "Success",user_id)
 
-        return make_response(jsonify({"message": "Event added successfully"}), 201)
+        return make_response(jsonify({"message": "Event added successfully"}), 200)

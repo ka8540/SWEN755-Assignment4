@@ -43,9 +43,9 @@ def invalidate_admin_session_key(user_id):
     result = exec_get_one(check_query,(user_id,))
     return result
 
-def log_admin_activity(activity_data):
+def log_admin_activity(activity_data,user_id):
     query = """
-        INSERT INTO SessionStorage (session_key, data, timestamp)
-        VALUES (%s, %s, %s)
+        INSERT INTO SessionStorage (session_key, data, timestamp,user_id)
+        VALUES (%s, %s, %s, %s)
     """
-    exec_commit(query, (activity_data['session_key'], activity_data['data'], activity_data['timestamp']))
+    exec_commit(query, (activity_data['session_key'], activity_data['data'], activity_data['timestamp'],user_id))

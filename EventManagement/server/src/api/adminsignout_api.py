@@ -21,7 +21,7 @@ class AdminSignoutAPI(Resource):
                     "data": f"Admin signed out.",
                     "timestamp": datetime.utcnow(),
                 }
-                log_admin_activity(activity_data)
+                log_admin_activity(activity_data,user_id)
                 return make_response(jsonify({"message": "Successfully signed out"}), 200)
             else:
                 return make_response(jsonify({"error": "Failed to sign out"}), 500)

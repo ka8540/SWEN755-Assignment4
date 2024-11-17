@@ -27,13 +27,13 @@ def add_event_to_db(event_data):
     ))
 
 # Log admin activity in SessionStorage table
-def log_admin_activity(session_key, activity, status):
+def log_admin_activity(session_key, activity, status,user_id):
     query = """
-        INSERT INTO SessionStorage (session_key, data, timestamp)
-        VALUES (%s, %s, %s)
+        INSERT INTO SessionStorage (session_key, data, timestamp, user_id)
+        VALUES (%s, %s, %s, %s)
     """
     activity_data = f"{activity} | Status: {status}"
-    exec_commit(query, (session_key, activity_data, datetime.utcnow()))
+    exec_commit(query, (session_key, activity_data, datetime.utcnow(),user_id))
 
 def get_event_titles():
     query = """
