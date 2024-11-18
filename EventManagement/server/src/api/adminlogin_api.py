@@ -3,8 +3,8 @@ from flask import jsonify, make_response
 from flask_restful import Resource, reqparse
 from flask_jwt_extended import create_access_token
 from flask_bcrypt import Bcrypt
-from db.adminlogin import get_admin_credentials, update_admin_session_key, log_admin_activity
-import secrets  
+from db.adminlogin import (get_admin_credentials, update_admin_session_key, log_admin_activity)
+import secrets
 
 class AdminLoginAPI(Resource):
     def __init__(self, **kwargs):
