@@ -35,6 +35,7 @@ def get_all_events():
         print(f"Error fetching events: {e}")
         return []
 
+# to log the user activity
 def log_user_activity(activity_data, user_id):
     query = """
         INSERT INTO SessionStorage (session_key, user_id, data, timestamp)
