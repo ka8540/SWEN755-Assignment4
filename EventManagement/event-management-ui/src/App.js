@@ -5,6 +5,8 @@ import Dashboard from './dashboard';
 import UserLogin from './UserLogin';
 import AdminEventDetails from './AdminEventDetails';
 import AdminAddEvent from './AdminAddEvent';
+import UserDashboard from "./userdashboard";
+import EventDetails from "./eventdetails";
 import './App.css';
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
           <Route path="/admindashboard" element={<Dashboard/>} />
           <Route path="/admin/addeventboard/:eventId" element={<AdminEventDetails />} />
           <Route path="/create-event" element={<AdminAddEvent />} />
+          <Route path="/userdashboard" element={<UserDashboard />} />
+          <Route path="/eventdetails/:id" element={<EventDetails />} />
         </Routes>
       </div>
     </Router>

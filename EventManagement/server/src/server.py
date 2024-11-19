@@ -14,7 +14,7 @@ from api.adminsignout_api import AdminSignoutAPI
 from api.adminaddEvents import AdminAddEventsAPI, AdminEventDetailIDsAPI
 from api.userlogin_api import UserLoginAPI
 from api.userregister_api import UserRegisterAPI
-from api.view_events import ViewEventsAPI
+from api.view_events import ViewEventsAPI, ViewEventDetailsAPI
 
 app = Flask(__name__)
 CORS(app)
@@ -36,7 +36,8 @@ api.add_resource(AdminAddEventsAPI, '/admin/addevent')
 api.add_resource(UserLoginAPI, '/login', resource_class_kwargs={'bcrypt': bcrypt})
 api.add_resource(UserRegisterAPI, '/register', resource_class_kwargs={'bcrypt': bcrypt})
 api.add_resource(AdminEventDetailIDsAPI, '/admin/eventdetails/<int:event_id>')
-api.add_resource(ViewEventsAPI, '/viewevent')
+api.add_resource(ViewEventsAPI, '/userdashboard')
+api.add_resource(ViewEventDetailsAPI, '/eventdetails/<int:event_id>')
 
 # Function to set up the database
 def setup_database():
