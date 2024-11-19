@@ -2,6 +2,7 @@
 DROP TABLE IF EXISTS UserTable CASCADE;
 DROP TABLE IF EXISTS SessionStorage CASCADE;
 DROP TABLE IF EXISTS EventData CASCADE;
+DROP TABLE IF EXISTS EventAttendance CASCADE;
 
 -- Create the User table
 CREATE TABLE UserTable (
@@ -38,3 +39,14 @@ CREATE TABLE EventData (
 
 INSERT INTO UserTable (student_email, username, password, role, major)
 VALUES ('admin@example.com', 'admin', '$2b$12$U2zmQiz7mk61pVLjJRV2h.vPOPQ.vtOMvLfqmRJ8AHnD5ZWkR/2h.', 'Admin', NULL);
+
+
+-- Create EventAttendance table to track event registrations
+CREATE TABLE EventAttendance (
+    id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL,
+    event_id INT NOT NULL,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES UserTable(id) ON DELETE CASCADE,
+    CONSTRAINT fk_event FOREIGN KEY (event_id) REFERENCES EventData(id) ON DELETE CASCADE
+);

@@ -37,7 +37,13 @@ class AdminAddEventsAPI(Resource):
         parser.add_argument('organizer', type=str, required=True, help='Organizer is required', location='json')
         parser.add_argument('audience_type', type=str, required=True, help="audience_type is required", location='json')
         args = parser.parse_args()
-
+        print("Args:",args['date'])
+        print("Args:",args['description'])
+        print("Args:",args['title'])
+        print("Args:",args['location'])
+        print("Args:",args['time'])
+        print("Args:",args['organizer'])
+        print("Args:",args['audience_type'])
         # Get current user details from JWT
         current_user = get_jwt_identity()
         user_id = current_user.get("id")
