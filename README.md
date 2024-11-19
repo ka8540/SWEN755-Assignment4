@@ -148,6 +148,56 @@ This project involves developing an Event Management System that allows administ
    - **Method**: POST  
    - **Response**: Success or failure message.
 
+## Components
+
+### 1. AdminDashboard
+The **AdminDashboard** allows administrators to manage events. It provides features like viewing all events, adding new events, and editing event details.
+
+![AdminDashboard](images/AdminDashboard.png)
+
+---
+
+### 2. AdminEventDetails
+The **AdminEventDetails** component displays detailed information about a specific event. Administrators can view and edit event details here.
+
+![AdminEventDetails](images/AdminEventDetails.png)
+
+---
+
+### 3. AdminLogin
+The **AdminLogin** component enables administrators to log in to the system using their credentials.
+
+![AdminLogin](images/AdminLogin.png)
+
+---
+
+### 4. UserDashboard
+The **UserDashboard** serves as the homepage for users. It displays all available events that users can view or register for.
+
+![UserDashboard](images/UserDashboard.png)
+
+---
+
+### 5. UserEventDetails
+The **UserEventDetails** component shows detailed information about an event for users. It includes options to register for the event.
+
+![UserEventDetails](images/UserEventDetails.png)
+
+---
+
+### 6. UserLogin
+The **UserLogin** component enables students to log in to their account using their credentials.
+
+![UserLogin](images/UserLogin.png)
+
+---
+
+### 7. UserRegister
+The **UserRegister** component allows new users to create an account by providing their details such as email, username, and major.
+
+![UserRegister](images/UserRegister.png)
+
+
 ## Use Case Flows
 
 ### Use Case 1: Authenticated and Authorized
