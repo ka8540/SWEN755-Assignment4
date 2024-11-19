@@ -13,7 +13,7 @@ from api.adminaddEvents import AdminAddEventsAPI, AdminEventDetailIDsAPI
 from api.userlogin_api import UserLoginAPI
 from api.userregister_api import UserRegisterAPI
 from api.userviewevent_api import UserViewEventsAPI, UserViewEventDetailsAPI
-
+from api.useraddtobucket_api import UserAddToBucketAPI
 app = Flask(__name__)
 CORS(app)
 
@@ -36,6 +36,7 @@ api.add_resource(UserRegisterAPI, '/register', resource_class_kwargs={'bcrypt': 
 api.add_resource(AdminEventDetailIDsAPI, '/admin/eventdetails/<int:event_id>')
 api.add_resource(UserViewEventsAPI, '/viewevents')
 api.add_resource(UserViewEventDetailsAPI, '/vieweventdetails/<int:event_id>')
+api.add_resource(UserAddToBucketAPI, '/addtobucket')
 
 # Function to set up the database
 def setup_database():

@@ -50,11 +50,14 @@ function UserEventDetails() {
                 },
                 body: JSON.stringify({ event_id: eventId }),
             });
-
+    
             const data = await response.json();
-
+    
             if (response.ok) {
                 alert('Event added to your bucket successfully!');
+            } else if (response.status === 310) {
+                console.log("Message:",data);
+                alert(data.error || 'You do not meet the requirements to attend this event.');
             } else {
                 console.error(data.message || 'Failed to add event to bucket');
                 alert(data.message || 'Failed to add event to bucket');
@@ -66,6 +69,7 @@ function UserEventDetails() {
             setIsLoading(false);
         }
     };
+    
 
     return (
         <div className="event-details-container">

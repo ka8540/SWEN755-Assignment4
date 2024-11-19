@@ -2,6 +2,7 @@
 DROP TABLE IF EXISTS UserTable CASCADE;
 DROP TABLE IF EXISTS SessionStorage CASCADE;
 DROP TABLE IF EXISTS EventData CASCADE;
+DROP TABLE IF EXISTS EventBucket CASCADE;
 
 -- Create the User table
 CREATE TABLE UserTable (
@@ -34,6 +35,16 @@ CREATE TABLE EventData (
     time TIME NOT NULL,
     organizer VARCHAR(255) NOT NULL,
     audience_type VARCHAR(10) NOT NULL CHECK (audience_type IN ('UG', 'G', 'Both'))
+);
+
+-- Create the EventBucket table
+CREATE TABLE EventBucket (
+    id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL,
+    event_id INT NOT NULL,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES UserTable(id) ON DELETE CASCADE,
+    CONSTRAINT fk_event FOREIGN KEY (event_id) REFERENCES EventData(id) ON DELETE CASCADE
 );
 
 INSERT INTO UserTable (student_email, username, password, role, major)

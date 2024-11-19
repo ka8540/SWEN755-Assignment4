@@ -1,4 +1,4 @@
-from utilities.swen_344_db_utils import exec_get_all, exec_get_one
+from utilities.swen_344_db_utils import exec_get_all, exec_get_one, exec_commit
 
 def validate_user_session(user_id, session_key):
     query = """
@@ -35,3 +35,11 @@ def get_event_details_by_id(event_id):
             "audience_type": result[7]
         }
     return None
+
+def log_user_activity(session_key, activity, status, user_id):
+    query = """
+        INSERT INTO SessionStorage (session_key, data, timestamp, user_id)
+        VALUES (%s, %s, CURRENT_TIMESTAMP, %s)
+    """
+    activity_data = f"{activity} | Status: {status}"
+    exec_commit(query, (session_key, activity_data, user_id))
