@@ -30,16 +30,10 @@ This project involves developing an Event Management System that allows administ
    - Database management system.
    - Installation: [Download PostgreSQL](https://www.postgresql.org/download/)
 
-4. **React**
-   - Frontend framework for the user interface.
-   - Run the following command to install dependencies:
-     ```
-     npm install
-     ```
-
-5. **npm**
-   - Used for managing frontend dependencies.
-   - Run the following command:
+4. **React and npm**
+   - React is the frontend framework used for building the user interface.
+   - npm (Node Package Manager) is used to manage and install frontend dependencies for React.
+   - Run the following command in the `Event-management-ui` directory to install all necessary dependencies:
      ```
      npm install
      ```
@@ -72,7 +66,7 @@ This project involves developing an Event Management System that allows administ
        "time": "HH:MM:SS",
        "location": "Event Location",
        "organizer": "Organizer Name",
-       "audience_type": "UG" // or "G" or "Both"
+       "audience_type": "UG" 
      }
      ```
    - **Response**: Message indicating success or failure.
@@ -91,7 +85,7 @@ This project involves developing an Event Management System that allows administ
        "time": "HH:MM:SS",
        "location": "Updated Location",
        "organizer": "Updated Organizer",
-       "audience_type": "UG" // or "G" or "Both"
+       "audience_type": "UG" 
      }
      ```
    - **Response**: Event details or success message.
@@ -123,7 +117,7 @@ This project involves developing an Event Management System that allows administ
        "student_email": "student@rit.edu",
        "username": "studentname",
        "password": "password123",
-       "major": "UG" // or "G"
+       "major": "UG" 
      }
      ```
    - **Response**: Success or failure message.
@@ -198,14 +192,7 @@ A guest user (not logged in) attempts to access the system and register for an e
 
 1. The guest tries to log in via the `/login` API but provides invalid credentials.
    - The system denies authentication, and no `session_key` is generated.
-   - The system logs the failed login attempt for auditing purposes.
-2. The guest attempts to fetch the list of events using the `/viewevents` API.
-   - The request fails because no valid JWT token is provided in the header.
-   - The system responds with a 401 Unauthorized error.
-3. The guest attempts to register for an event using the `/addtobucket` API.
-   - The request fails due to lack of authentication (no valid JWT token or `session_key`).
-   - The system logs the unauthorized access attempt for security purposes.
-4. No session information is stored in **`SessionStorage`**, and no data is saved in the **`EventBucket`** table.
+   - No session information is stored in **`SessionStorage`**, and no data is saved in the **`EventBucket`** table.
 
 ---
 
@@ -214,4 +201,4 @@ A guest user (not logged in) attempts to access the system and register for an e
 - **`SessionStorage`**: Logs active sessions, linking the `session_key` with user data.
 - **`EventData`**: Stores event details like title, description, date, time, location, organizer, and audience type.
 - **`EventBucket`**: Logs event registrations by linking `user_id` with `event_id`.
-- **Logs**: Unauthorized or failed attempts are recorded in the system for auditing.
+
