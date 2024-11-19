@@ -29,12 +29,23 @@ def is_email_registered(email):
     result = exec_get_one(query, (email,))
     return result[0] > 0
 
-# Function to register a new admin
-def register_admin(email, username, hashed_password):
+
+def invalidate_admin_session_key(user_id):
     query = """
-        INSERT INTO UserTable (student_email, username, password, major, role) 
-        VALUES (%s, %s, %s, 'G', 'Admin') 
-        RETURNING id
+        UPDATE UserTable
+        SET session_key = NULL
+        WHERE id = %s;
     """
-    user_id = exec_get_one(query, (email, username, hashed_password))
-    return user_id[0]
+    exec_commit(query, (user_id,))
+    check_query = '''SELECT session_key 
+                     FROM UserTable 
+                     WHERE id = %s;'''
+    result = exec_get_one(check_query,(user_id,))
+    return result
+
+def log_admin_activity(activity_data,user_id):
+    query = """
+        INSERT INTO SessionStorage (session_key, data, timestamp,user_id)
+        VALUES (%s, %s, %s, %s)
+    """
+    exec_commit(query, (activity_data['session_key'], activity_data['data'], activity_data['timestamp'],user_id))

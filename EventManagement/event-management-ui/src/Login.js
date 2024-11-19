@@ -23,12 +23,13 @@ export default function Login() {
             const data = await response.json();
 
             if (!response.ok) {
-                throw new Error(data.message || "Failed to log in");
+                alert(data.message || "Invalid Credentials");
+                throw new Error(data.message);
             }
 
             localStorage.setItem("token", data.access_token);
 
-            navigate("/admin");
+            navigate("/admindashboard");
         } catch (error) {
             setError(error.message);
         }
@@ -42,7 +43,7 @@ export default function Login() {
                
             </div>
             <div className="tabContainer">
-            <div className="title">GatherHub</div>
+            <div className="title">CampusEvents</div>
                 <Tabs
                     value={0}
                     centered
