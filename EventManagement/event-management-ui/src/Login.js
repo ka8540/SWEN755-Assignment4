@@ -43,7 +43,7 @@ export default function Login() {
                
             </div>
             <div className="tabContainer">
-            <div className="title">GatherHub</div>
+            <div className="title">CampusEvents</div>
                 <Tabs
                     value={0}
                     centered

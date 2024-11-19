@@ -83,7 +83,7 @@ function UserViewEventDashboard() {
     return (
         <div className='dashboard-container'>
             <div className='dashboard-sidebar'>
-                <h1 className='app-name'>GatherHub</h1>
+                <h1 className='app-name'>CampusEvents</h1>
                 <div
                     className={`dashboard-tab ${selectedDiv === 'home' ? 'selected' : ''}`}
                     onClick={() => handleDivClick('home', '/dashboard')}
@@ -102,7 +102,7 @@ function UserViewEventDashboard() {
                 </div>
             </div>
             <div className='dashboard-main'>
-                <div className='dashboard-heading'>Welcome to GatherHub</div>
+                <div className='dashboard-heading'>Welcome to CampusEvents</div>
                 <div className='events-section'>
                     <h4 className='events-title'>Upcoming Events</h4>
                     {events.length === 0 ? (
