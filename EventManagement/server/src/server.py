@@ -14,6 +14,7 @@ from api.userlogin_api import UserLoginAPI
 from api.userregister_api import UserRegisterAPI
 from api.userviewevent_api import UserViewEventsAPI, UserViewEventDetailsAPI
 from api.useraddtobucket_api import UserAddToBucketAPI
+from api.usersignout_api import UserSignoutAPI
 app = Flask(__name__)
 CORS(app)
 
@@ -37,6 +38,7 @@ api.add_resource(AdminEventDetailIDsAPI, '/admin/eventdetails/<int:event_id>')
 api.add_resource(UserViewEventsAPI, '/viewevents')
 api.add_resource(UserViewEventDetailsAPI, '/vieweventdetails/<int:event_id>')
 api.add_resource(UserAddToBucketAPI, '/addtobucket')
+api.add_resource(UserSignoutAPI, '/signout')
 
 # Function to set up the database
 def setup_database():

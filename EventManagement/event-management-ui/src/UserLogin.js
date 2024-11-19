@@ -44,6 +44,10 @@ export default function UserLogin() {
     };
 
     const handleRegisterOnClick = async () => {
+        if (!studentEmail.endsWith('.edu')) {
+            setError("Student Email must end with .edu");
+            return;
+        }
         try {
             const response = await fetch("http://127.0.0.1:5000/register", {
                 method: "POST",
@@ -57,16 +61,16 @@ export default function UserLogin() {
                     major,
                 }),
             });
-
+    
             const data = await response.json();
-
+    
             if (!response.ok) {
                 alert(data.message || "Registration Failed");
                 throw new Error(data.message);
             }
-
+    
             alert("Registration Successful! Please log in.");
-            setCurrentTabIndex(0); 
+            setCurrentTabIndex(0);
         } catch (error) {
             setError(error.message);
         }
@@ -155,7 +159,14 @@ export default function UserLogin() {
                             margin="normal"
                             required
                             value={studentEmail}
-                            onChange={(e) => setStudentEmail(e.target.value)}
+                            onChange={(e) => {
+                                setStudentEmail(e.target.value);
+                                if (!e.target.value.endsWith('.edu')) {
+                                    setError("Student Email must end with .edu");
+                                } else {
+                                    setError(""); // Clear the error if valid
+                                }
+                            }}
                         />
                         <TextField
                             label="Username"

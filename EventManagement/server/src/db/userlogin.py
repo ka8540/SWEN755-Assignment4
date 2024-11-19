@@ -28,3 +28,31 @@ def log_user_activity(activity_data, user_id):
         activity_data['data'], 
         activity_data['timestamp']
     ))
+
+def log_user_activity(activity_data, user_id):
+    query = """
+        INSERT INTO SessionStorage (session_key, data, timestamp, user_id)
+        VALUES (%s, %s, %s, %s)
+    """
+    try:
+        exec_commit(query, (
+            activity_data["session_key"],
+            activity_data["data"],
+            activity_data["timestamp"],
+            user_id
+        ))
+    except Exception as e:
+        print(f"Error logging user activity: {e}")
+        
+def invalidate_user_session_key(user_id):
+    query = """
+        UPDATE UserTable
+        SET session_key = NULL
+        WHERE id = %s
+    """
+    try:
+        exec_commit(query, (user_id,))
+        return True
+    except Exception as e:
+        print(f"Error invalidating session key: {e}")
+        return False
