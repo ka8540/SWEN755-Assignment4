@@ -25,7 +25,7 @@ class AdminManipulationTestCase(unittest.TestCase):
         # Extract the token
         access_token = login_response.json().get("access_token")
         
-
+        # Step 3: User tries to fetch the admin api through user's access token
         fetch_headers = {"Authorization": f"Bearer {access_token}"}
         fetch_response = requests.get(f"{self.BASE_URL}/admin/addevent", headers=fetch_headers)
 
