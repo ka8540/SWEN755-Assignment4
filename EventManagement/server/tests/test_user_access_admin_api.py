@@ -1,14 +1,14 @@
 import unittest
 import requests
 
-class AdminManipulationTestCase(unittest.TestCase):
+class UserAccessAdminAPI(unittest.TestCase):
     BASE_URL = "http://127.0.0.1:5000" 
 
     def test_admin_add_user_to_event(self):
-        """Test the admin's ability to add a user to an event without validation."""
+        """Test where user tries to acess the admin API's from its JWT token"""
         # Step 1: Register a new user
         user_payload = {
-            "student_email": "testuser@example.com",
+            "student_email": "testuser2@example.com",
             "username": "testuser2",
             "password": "password123",
             "major": "UG"
@@ -24,6 +24,7 @@ class AdminManipulationTestCase(unittest.TestCase):
         
         # Extract the token
         access_token = login_response.json().get("access_token")
+        
         
         # Step 3: User tries to fetch the admin api through user's access token
         fetch_headers = {"Authorization": f"Bearer {access_token}"}
