@@ -48,4 +48,4 @@ CREATE TABLE EventBucket (
 );
 
 INSERT INTO UserTable (student_email, username, password, role, major)
-VALUES ('admin@example.com', 'admin', '$2b$12$U2zmQiz7mk61pVLjJRV2h.vPOPQ.vtOMvLfqmRJ8AHnD5ZWkR/2h.', 'Admin', NULL);
+VALUES ('admin@example.com', 'admin', '$2b$12$U2zmQiz7mk61pVLjJRV2h.vPOPQ.vtOMvLfqmRJ8AHnD5ZWkR/2h.', 'Admin', 'UG');
