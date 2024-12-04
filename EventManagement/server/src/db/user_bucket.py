@@ -5,7 +5,7 @@ def validate_user_session(user_id, session_key):
     query = """
         SELECT session_key 
         FROM UserTable 
-        WHERE id = %s AND session_key = %s AND role = 'Student'
+        WHERE id = %s AND session_key = %s 
     """
     result = exec_get_one(query, (user_id, session_key))
     return result is not None

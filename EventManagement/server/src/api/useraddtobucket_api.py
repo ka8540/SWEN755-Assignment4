@@ -18,10 +18,10 @@ class UserAddToBucketAPI(Resource):
         session_key = current_user.get("session_key")
         role = current_user.get("role")
 
-        # Verify that the role is "Student"
-        if role != "Student":
-            log_user_activity(session_key, "Unauthorized role attempt to add event", "Failed", user_id)
-            return make_response(jsonify({"error": "Unauthorized role"}), 403)
+        # # Verify that the role is "Student"
+        # if role != "Student":
+        #     log_user_activity(session_key, "Unauthorized role attempt to add event", "Failed", user_id)
+        #     return make_response(jsonify({"error": "Unauthorized role"}), 403)
 
         # Validate the user's session
         if not validate_user_session(user_id, session_key):
