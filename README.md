@@ -294,10 +294,11 @@ A user with a student role attempts to use their JWT token to access admin-speci
 
 **Flow**:
 
-1. A student logs in and receives a valid JWT token.
-2. The student attempts to access an admin-specific API (e.g., `/admin/addevent`) using their JWT token in the request headers.
-3. The system validates the JWT token and checks the user's role.
-4. Since the user role is "student" and not "admin," the system denies access, returning a `403 Forbidden` error.
+1. A student registers for an account through API (`/register`).
+2. The student logs in through API (`/login`) and receives a valid JWT token.
+3. The student attempts to access an admin-specific API (e.g., `/admin/addevent`) using their JWT token in the request headers.
+4. The system validates the JWT token and checks the user's role.
+5. Since the user role is "student" and not "admin," the system denies access, returning a `403 Forbidden` error.
 
 **Test Case Result**:  
 The test case for this scenario is successful as the system correctly prevents unauthorized access, demonstrating that the architectural breaker does not exist.
@@ -317,10 +318,12 @@ In the system, the admin can manage events and view user-specific data, such as 
 
 **Flow**:
 
-1. An admin logs in and receives a valid JWT token.
-2. The admin views all students' event data.
-3. The admin modifies a student's event attendance or bucket without validation.
-4. The system incorrectly allows this action due to insufficient authorization and validation mechanisms.
+1. A student registers using API (`/register`).
+2. The student logs in using API (`/login`).
+3. An admin logs in and receives a valid JWT token from API (`/admin/login`).
+4. The admin views all students' event data from API (`/admin/addevent`).
+5. The admin modifies a student's event attendance or bucket without validation.
+6. The system incorrectly allows this action due to insufficient authorization and validation mechanisms in API (`/addtobucket`).
 
 **Test Case Result**:  
 The test case for this scenario fails, as the system allows unauthorized data alteration, confirming the presence of the architectural breaker.
@@ -340,8 +343,8 @@ Users can log in from multiple devices simultaneously, creating new `session_key
 
 **Flow**:
 
-1. A user logs in from one device, generating a `session_key`.
-2. The same user logs in from another device, generating a new `session_key`.
+1. A user logs in from one device, generating a `session_key` using API (`/login`).
+2. The same user logs in from another device, generating a new `session_key` using the same API (`/login`).
 3. The system logs actions under different session IDs without invalidating previous sessions.
 
 **Test Case Result**:  
