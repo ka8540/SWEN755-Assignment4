@@ -4,7 +4,7 @@ import requests
 class UserAccessAdminAPI(unittest.TestCase):
     BASE_URL = "http://127.0.0.1:5000" 
 
-    def test_admin_add_user_to_event(self):
+    def test_user_tried_to_fetch_admin_api(self):
         """Test where user tries to acess the admin API's from its JWT token"""
         # Step 1: Register a new user
         user_payload = {

@@ -27,7 +27,6 @@ class UserRegisterAPI(Resource):
 
         # Generate session key
         session_key = secrets.token_hex(16)
-        print('session_key:',session_key)
 
         # Register the user in the database
         user_data = {

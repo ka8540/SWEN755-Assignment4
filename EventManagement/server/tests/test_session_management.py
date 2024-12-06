@@ -5,7 +5,7 @@ class TestSessionManagement(unittest.TestCase):
     BASE_URL = "http://127.0.0.1:5000" 
 
     def test_session_mismanagement(self):
-        """Test the admin's ability to add a user to an event without validation."""
+        """Test for session mismanagement!!"""
         # Step 1: Register a new user
         user_payload = {
             "student_email": "testuser28@example.com",
