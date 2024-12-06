@@ -277,7 +277,7 @@ A guest user (not logged in) attempts to access the system and register for an e
 - **`EventData`**: Stores event details like title, description, date, time, location, organizer, and audience type.
 - **`EventBucket`**: Logs event registrations by linking `user_id` with `event_id`.
 
-# SWEN755-Assignment5
+# Assignment5:
 
 ## Architectural Breakers
 
